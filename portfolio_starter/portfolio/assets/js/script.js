@@ -112,7 +112,7 @@ const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
       revealObserver.unobserve(entry.target);
     }
   });
@@ -194,3 +194,51 @@ function initParticles() {
 
 window.addEventListener('resize', initParticles);
 initParticles();
+
+// =========================================================
+// 8. Contact form submission (Formspree-ready, no backend needed)
+// =========================================================
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+const formSubmitBtn = document.getElementById('formSubmitBtn');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const action = contactForm.getAttribute('action') || '';
+    if (action.includes('YOUR_FORM_ID')) {
+      formStatus.textContent = 'Set up your Formspree endpoint in index.html to activate this form.';
+      formStatus.className = 'form-status error';
+      return;
+    }
+
+    formSubmitBtn.disabled = true;
+    formSubmitBtn.textContent = 'Sending...';
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    try {
+      const response = await fetch(action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formStatus.textContent = 'Thanks! Your message has been sent.';
+        formStatus.className = 'form-status success';
+        contactForm.reset();
+      } else {
+        formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+        formStatus.className = 'form-status error';
+      }
+    } catch (err) {
+      formStatus.textContent = 'Network error. Please try again or email me directly.';
+      formStatus.className = 'form-status error';
+    } finally {
+      formSubmitBtn.disabled = false;
+      formSubmitBtn.textContent = 'Send message';
+    }
+  });
+}
