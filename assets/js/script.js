@@ -52,10 +52,11 @@ themeToggle.addEventListener('click', () => {
 const typedEl = document.getElementById('typedText');
 const roles = [
   'robots.',
-  'ROS 2 simulations.',
+  'ROS2 simulations.',
   'mechatronic systems.',
-  'gear & mechanical designs.',
-  'embedded ESP32 projects.'
+  'gears & mechanical designs.',
+  'embedded system projects.',
+  'and many more cool things!'
 ];
 
 let roleIndex = 0;
