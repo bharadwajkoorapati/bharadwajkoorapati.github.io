@@ -12,15 +12,19 @@
 <body>
 
   <div class="cursor-glow" id="cursorGlow"></div>
+      <div class="page-bg" aria-hidden="true">
+       <canvas id="particleCanvas"></canvas>
+     </div>
 
   <header class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#home" class="logo">BK<span class="dot">.</span></a>
+      
       <nav class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <button class="nav-tab active" data-tab="home">Home</button>
+        <button class="nav-tab" data-tab="about">About</button>
+        <button class="nav-tab" data-tab="projects">Projects</button>
+        <button class="nav-tab" data-tab="contact">Contact</button>
       </nav>
       <div class="nav-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
@@ -32,10 +36,7 @@
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <div class="hero-bg" aria-hidden="true">
-        <canvas id="particleCanvas"></canvas>
-      </div>
+    <section class="hero tab-page visible-at-start" id="home">
 
       <div class="hero-content">
         <p class="hero-eyebrow reveal">Mechatronics &amp; Cyber-Physical Systems · M.Sc.</p>
@@ -53,8 +54,8 @@
         </p>
 
         <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">View my work</a>
-          <a href="#contact" class="btn btn-secondary">Get in touch</a>
+        <a href="#" class="btn btn-primary" data-goto-tab="projects">View my work</a>
+        <a href="#" class="btn btn-secondary" data-goto-tab="contact">Get in touch</a>
         </div>
 
         <div class="hero-socials reveal">
@@ -70,12 +71,9 @@
         </div>
       </div>
 
-      <a href="#about" class="scroll-indicator" aria-label="Scroll down">
-        <span></span>
-      </a>
     </section>
 
-    <section class="about-section" id="about">
+    <section class="about-section tab-page visible-at-start" id="about">
       <div class="section-inner">
         <p class="section-eyebrow reveal">About</p>
         <h2 class="section-title reveal">A bit about <span class="highlight">me</span></h2>
@@ -176,148 +174,135 @@
       </div>
     </section>
 
-    <section class="projects-section" id="projects">
-      <div class="section-inner">
-        <p class="section-eyebrow reveal">Selected Work</p>
-        <h2 class="section-title reveal">My <span class="highlight">Projects</span></h2>
-        <p class="section-subtitle reveal">A mix of robotics, embedded systems, and VR/simulation work from my studies and internships.</p>
+    <section class="tab-panel projects-section tab-page" id="projects">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Selected Work</p>
+    <h2 class="section-title reveal">My <span class="highlight">Projects</span></h2>
+    <p class="section-subtitle reveal">Click any project to see the full breakdown: images, specs, and outcomes.</p>
 
-        <div class="project-grid">
+    <div class="project-grid">
 
-          <article class="project-card reveal">
-            <div class="project-card-top">
-              <span class="project-tag-pill">Robotics</span>
-              <span class="project-date">Oct 2025 - Jan 2026</span>
-            </div>
-            <h3>Autonomous Robo-Dog Navigation System </h3>
-            <p>
-              Built and simulated an embedded autonomous navigation system for a quadruped robot
-              using Arduino/ESP32 and multiple sensors for localization and motion
-              control. Deggendorf Institute of Technology.
-            </p>
-            <div class="project-stack">
-              <span class="tag">ESP32</span>
-              <span class="tag">Arduino</span>
-              <span class="tag">Sensors</span>
-              <span class="tag">Embedded C++</span>
-              <span class="tag">ROS2</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">View on GitHub &rarr;</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card-top">
-              <span class="project-tag-pill">VR / Simulation</span>
-              <span class="project-date">Jul 2025</span>
-            </div>
-            <h3>VR Project: "Pedestrian Simulator"</h3>
-            <p>
-              Designed and implemented a realistic VR simulation that enhances
-              road safety by immersing users in a pedestrian's perspective.
-              Deggendorf Institute of Technology.
-            </p>
-            <div class="project-stack">
-              <span class="tag">Unity</span>
-              <span class="tag">C#</span>
-              <span class="tag">VR</span>
-              <span class="tag">Blender</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">View on GitHub &rarr;</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card-top">
-              <span class="project-tag-pill">Robotics</span>
-              <span class="project-date">Jun 2023 - Mar 2024</span>
-            </div>
-            <h3>Aerial Manipulator Project</h3>
-            <p>
-              Prototyped, designed, and developed an aerial manipulator system
-              as a Robotics Intern at Handzylectro Labs, Hyderabad.
-            </p>
-            <div class="project-stack">
-              <span class="tag">Prototyping</span>
-              <span class="tag">Mechanical Design</span>
-              <span class="tag">Robotics</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">View on GitHub &rarr;</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card-top">
-              <span class="project-tag-pill">Mechanical / Robotics</span>
-              <span class="project-date">2019 - 2023</span>
-            </div>
-            <h3>Robotic Exosuit for Lower Arm</h3>
-            <p>
-              Bachelor's thesis project: conceptualized and developed a soft
-              exosuit tailored to empower individuals with disabled arms,
-              facilitating their daily activities with ease.
-            </p>
-            <div class="project-stack">
-              <span class="tag">SOLIDWORKS</span>
-              <span class="tag">Soft Robotics</span>
-              <span class="tag">Mechanical Design</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">View on GitHub &rarr;</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card-top">
-              <span class="project-tag-pill">Personal Project</span>
-              <span class="project-date">Ongoing</span>
-            </div>
-            <h3>Parametric Gear Design Toolkit</h3>
-            <p>
-              Parametric beveloid and conical gear design using MATLAB and Lua,
-              generating manufacturable gear geometries from custom input
-              parameters.
-            </p>
-            <div class="project-stack">
-              <span class="tag">MATLAB</span>
-              <span class="tag">Lua</span>
-              <span class="tag">Parametric Design</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">View on GitHub &rarr;</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card-top">
-              <span class="project-tag-pill">Personal Project</span>
-              <span class="project-date">Ongoing</span>
-            </div>
-            <h3>ROS2 Rover &amp; Sensor Integration</h3>
-            <p>
-              Personal ROS2 rover project integrating sensors and micro-ROS
-              over ESP32, used to learn ROS2 nodes, topics, and navigation
-              stack fundamentals.
-            </p>
-            <div class="project-stack">
-              <span class="tag">ROS2</span>
-              <span class="tag">Gazebo</span>
-              <span class="tag">micro-ROS</span>
-              <span class="tag">ESP32</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link">View on GitHub &rarr;</a>
-            </div>
-          </article>
-
+      <article class="project-card reveal" data-project="robodog">
+        <div class="project-card-top">
+          <span class="project-tag-pill">Robotics</span>
+          <span class="project-date">Oct 2025 - Jan 2026</span>
         </div>
-      </div>
-    </section>
+        <div class="project-thumb">
+          <img src="assets/images/projects/robodog-thumb.jpg" alt="Robo-dog navigation system" loading="lazy">
+        </div>
+        <h3>Autonomous Robo-Dog Navigation System</h3>
+        <p>Embedded autonomous navigation for a quadruped robot using ESP32 and multi-sensor localization.</p>
+        <div class="project-stack">
+          <span class="tag">ESP32</span>
+          <span class="tag">Arduino</span>
+          <span class="tag">Sensors</span>
+        </div>
+        <button class="project-link project-open-btn" data-project="robodog">View details &rarr;</button>
+      </article>
 
-    <section class="contact-section" id="contact">
+      <article class="project-card reveal" data-project="vr-pedestrian">
+        <div class="project-card-top">
+          <span class="project-tag-pill">VR / Simulation</span>
+          <span class="project-date">Jul 2025</span>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/images/projects/vr-pedestrian-thumb.jpg" alt="VR pedestrian perspective simulation" loading="lazy">
+        </div>
+        <h3>VR Project: "Pedestrian Perspective"</h3>
+        <p>Realistic VR simulation immersing users in a pedestrian's point of view to improve road safety.</p>
+        <div class="project-stack">
+          <span class="tag">Unity</span>
+          <span class="tag">C#</span>
+          <span class="tag">VR</span>
+        </div>
+        <button class="project-link project-open-btn" data-project="vr-pedestrian">View details &rarr;</button>
+      </article>
+
+      <article class="project-card reveal" data-project="aerial-manipulator">
+        <div class="project-card-top">
+          <span class="project-tag-pill">Robotics</span>
+          <span class="project-date">Jun 2023 - Mar 2024</span>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/images/projects/aerial-manipulator-thumb.jpg" alt="Aerial manipulator project" loading="lazy">
+        </div>
+        <h3>Aerial Manipulator Project</h3>
+        <p>Prototyped and developed an aerial manipulator system as a Robotics Intern at Handzylectro Labs.</p>
+        <div class="project-stack">
+          <span class="tag">Prototyping</span>
+          <span class="tag">Mechanical Design</span>
+        </div>
+        <button class="project-link project-open-btn" data-project="aerial-manipulator">View details &rarr;</button>
+      </article>
+
+      <article class="project-card reveal" data-project="exosuit">
+        <div class="project-card-top">
+          <span class="project-tag-pill">Mechanical / Robotics</span>
+          <span class="project-date">2019 - 2023</span>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/images/projects/exosuit-thumb.jpg" alt="Robotic exosuit for lower arm" loading="lazy">
+        </div>
+        <h3>Robotic Exosuit for Lower Arm</h3>
+        <p>Bachelor's thesis: a soft exosuit empowering individuals with disabled arms in daily activities.</p>
+        <div class="project-stack">
+          <span class="tag">SOLIDWORKS</span>
+          <span class="tag">Soft Robotics</span>
+        </div>
+        <button class="project-link project-open-btn" data-project="exosuit">View details &rarr;</button>
+      </article>
+
+      <article class="project-card reveal" data-project="gear-design">
+        <div class="project-card-top">
+          <span class="project-tag-pill">Personal Project</span>
+          <span class="project-date">Ongoing</span>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/images/projects/gear-design-thumb.jpg" alt="Parametric gear design toolkit" loading="lazy">
+        </div>
+        <h3>Parametric Gear Design Toolkit</h3>
+        <p>Parametric beveloid and conical gear design using MATLAB and Lua for manufacturable geometries.</p>
+        <div class="project-stack">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Lua</span>
+        </div>
+        <button class="project-link project-open-btn" data-project="gear-design">View details &rarr;</button>
+      </article>
+
+      <article class="project-card reveal" data-project="ros2-rover">
+        <div class="project-card-top">
+          <span class="project-tag-pill">Personal Project</span>
+          <span class="project-date">Ongoing</span>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/images/projects/ros2-rover-thumb.jpg" alt="ROS 2 rover and sensor integration" loading="lazy">
+        </div>
+        <h3>ROS 2 Rover &amp; Sensor Integration</h3>
+        <p>Personal ROS 2 rover integrating sensors and micro-ROS over ESP32 for navigation-stack fundamentals.</p>
+        <div class="project-stack">
+          <span class="tag">ROS 2</span>
+          <span class="tag">Gazebo</span>
+        </div>
+        <button class="project-link project-open-btn" data-project="ros2-rover">View details &rarr;</button>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PROJECT DETAIL OVERLAY (content injected by script.js) -->
+  <!-- ============================================================ -->
+  <div class="project-detail-overlay" id="projectDetailOverlay">
+    <div class="project-detail-panel">
+      <button class="project-detail-close" id="projectDetailClose" aria-label="Close">&times;</button>
+      <div class="project-detail-body" id="projectDetailBody">
+        <!-- injected by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="tab-panel contact-section tab-page" id="contact">
       <div class="section-inner">
         <p class="section-eyebrow reveal">Get In Touch</p>
         <h2 class="section-title reveal">Let's <span class="highlight">Connect</span></h2>
