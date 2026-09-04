@@ -12,6 +12,9 @@
 <body>
 
   <div class="cursor-glow" id="cursorGlow"></div>
+      <div class="page-bg" aria-hidden="true">
+       <canvas id="particleCanvas"></canvas>
+     </div>
 
   <header class="navbar" id="navbar">
     <div class="nav-inner">
@@ -33,10 +36,7 @@
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <div class="hero-bg" aria-hidden="true">
-        <canvas id="particleCanvas"></canvas>
-      </div>
+    <section class="hero tab-page visible-at-start" id="home">
 
       <div class="hero-content">
         <p class="hero-eyebrow reveal">Mechatronics &amp; Cyber-Physical Systems · M.Sc.</p>
@@ -71,12 +71,9 @@
         </div>
       </div>
 
-      <a href="#" class="scroll-indicator" data-goto-tab="about" aria-label="Scroll down">
-        <span></span>
-      </a>
     </section>
 
-    <section class="about-section" id="about">
+    <section class="about-section tab-page visible-at-start" id="about">
       <div class="section-inner">
         <p class="section-eyebrow reveal">About</p>
         <h2 class="section-title reveal">A bit about <span class="highlight">me</span></h2>
@@ -177,7 +174,7 @@
       </div>
     </section>
 
-    <section class="tab-panel projects-section" id="projects">
+    <section class="tab-panel projects-section tab-page" id="projects">
   <div class="section-inner">
     <p class="section-eyebrow reveal">Selected Work</p>
     <h2 class="section-title reveal">My <span class="highlight">Projects</span></h2>
@@ -305,7 +302,7 @@
   </div>
 </section>
 
-    <section class="contact-section" id="contact">
+    <section class="tab-panel contact-section tab-page" id="contact">
       <div class="section-inner">
         <p class="section-eyebrow reveal">Get In Touch</p>
         <h2 class="section-title reveal">Let's <span class="highlight">Connect</span></h2>

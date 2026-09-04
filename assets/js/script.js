@@ -129,10 +129,27 @@ const ctx = canvas.getContext('2d');
 let particles = [];
 let animationFrameId;
 
-function resizeCanvas() {
-  const hero = canvas.closest('.hero');
-  canvas.width = hero.offsetWidth;
-  canvas.height = hero.offsetHeight;
+if (canvas) {
+  function resizeCanvasFull() {
+    const bg = canvas.closest('.page-bg');
+    if (!bg) return;
+    canvas.width = bg.offsetWidth;
+    canvas.height = bg.offsetHeight;
+  }
+
+  // Replace the old resizeCanvas function behavior by redefining initParticles:
+  function initParticlesFull() {
+    resizeCanvasFull();
+    createParticles();
+    cancelAnimationFrame(animationFrameId);
+    drawParticles();
+  }
+
+  // Call once now to re-init with new container
+  initParticlesFull();
+
+  // Re-init on resize
+  window.addEventListener('resize', initParticlesFull);
 }
 
 function createParticles() {
@@ -186,16 +203,6 @@ function drawParticles() {
   animationFrameId = requestAnimationFrame(drawParticles);
 }
 
-function initParticles() {
-  resizeCanvas();
-  createParticles();
-  cancelAnimationFrame(animationFrameId);
-  drawParticles();
-}
-
-window.addEventListener('resize', initParticles);
-initParticles();
-
 // =========================================================
 // 8. Contact form submission (Formspree-ready, no backend needed)
 // =========================================================
@@ -243,35 +250,57 @@ if (contactForm) {
     }
   });
 }
+const tabPages = document.querySelectorAll('.tab-page');
 const navTabs = document.querySelectorAll('.nav-tab');
-const tabPanels = document.querySelectorAll('.tab-panel');
 
-function activateTab(tabName) {
-  navTabs.forEach(tab => tab.classList.toggle('active', tab.dataset.tab === tabName));
-  tabPanels.forEach(panel => panel.classList.toggle('active', panel.id === tabName));
+function activateFullPageTab(tabName) {
+  // Hide all tab-pages first
+  tabPages.forEach(page => {
+    page.classList.remove('active-page');
+    page.classList.remove('visible-at-start');
+  });
+
+  // Special rule: if clicking Home or About, only that page shows
+  // (you can change this later if you want Home+About together again)
+  const target = document.getElementById(tabName);
+  if (target) {
+    target.classList.add('active-page');
+  }
+
+  // Update nav tab active state
+  navTabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.tab === tabName);
+  });
+
+  // Scroll to top smoothly
   window.scrollTo({ top: 0, behavior: 'smooth' });
   history.replaceState(null, '', '#' + tabName);
 }
 
+// Attach click handlers to nav tabs
 navTabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    activateTab(tab.dataset.tab);
-    navLinks.classList.remove('open');
+    activateFullPageTab(tab.dataset.tab);
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks) navLinks.classList.remove('open');
   });
 });
 
-// Hero CTA buttons / scroll-indicator that use data-goto-tab instead of href="#section"
+// Also wire up any hero CTA buttons that use data-goto-tab
 document.querySelectorAll('[data-goto-tab]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
-    activateTab(btn.dataset.gotoTab);
+    activateFullPageTab(btn.dataset.gotoTab);
   });
 });
 
-// Restore tab from URL hash on load (e.g. someone bookmarks yoursite.com/#projects)
+// Restore from URL hash on load (optional: default to 'home' if nothing specified)
 const initialTab = window.location.hash.replace('#', '') || 'home';
 if (['home', 'about', 'projects', 'contact'].includes(initialTab)) {
-  activateTab(initialTab);
+  // On first load, keep visible-at-start as-is, then optionally switch if hash is not home/about
+  if (initialTab === 'projects' || initialTab === 'contact') {
+    activateFullPageTab(initialTab);
+  }
 }
 
 // =========================================================
