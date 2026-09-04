@@ -243,3 +243,238 @@ if (contactForm) {
     }
   });
 }
+const navTabs = document.querySelectorAll('.nav-tab');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+function activateTab(tabName) {
+  navTabs.forEach(tab => tab.classList.toggle('active', tab.dataset.tab === tabName));
+  tabPanels.forEach(panel => panel.classList.toggle('active', panel.id === tabName));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.replaceState(null, '', '#' + tabName);
+}
+
+navTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    activateTab(tab.dataset.tab);
+    navLinks.classList.remove('open');
+  });
+});
+
+// Hero CTA buttons / scroll-indicator that use data-goto-tab instead of href="#section"
+document.querySelectorAll('[data-goto-tab]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    activateTab(btn.dataset.gotoTab);
+  });
+});
+
+// Restore tab from URL hash on load (e.g. someone bookmarks yoursite.com/#projects)
+const initialTab = window.location.hash.replace('#', '') || 'home';
+if (['home', 'about', 'projects', 'contact'].includes(initialTab)) {
+  activateTab(initialTab);
+}
+
+// =========================================================
+// 10. Project detail data — EDIT THIS OBJECT to add/update projects.
+// Each key must match the data-project attribute on its card in index.html.
+// images: put real file paths in assets/images/projects/ — if a file is
+// missing the broken image just won't render (no crash).
+// =========================================================
+const PROJECT_DATA = {
+  'robodog': {
+    title: 'Autonomous Robo-Dog Navigation System',
+    period: 'Oct 2025 - Jan 2026 · Deggendorf Institute of Technology',
+    images: [
+      'assets/images/projects/robodog-1.jpg',
+      'assets/images/projects/robodog-2.jpg',
+      'assets/images/projects/robodog-3.jpg'
+    ],
+    summary: 'Built an embedded autonomous navigation system for a quadruped robot (robo-dog) using Arduino/ESP32 and multiple sensors for localization and motion control.',
+    specs: [
+      ['Platform', 'Quadruped robot chassis'],
+      ['Microcontroller', 'ESP32 / Arduino'],
+      ['Sensors', 'IMU, ultrasonic, encoders'],
+      ['Role', 'Navigation & motion control'],
+      ['Outcome', 'Autonomous obstacle-aware locomotion']
+    ],
+    highlights: [
+      'Designed the sensor fusion pipeline for localization on a resource-constrained MCU.',
+      'Implemented closed-loop motion control for stable quadruped gait tracking.',
+      'Tuned obstacle-avoidance thresholds using live sensor calibration.'
+    ],
+    links: { github: '#', demo: '' }
+  },
+  'vr-pedestrian': {
+    title: 'VR Project: "Pedestrian Perspective"',
+    period: 'Jul 2025 · Deggendorf Institute of Technology',
+    images: [
+      'assets/images/projects/vr-pedestrian-1.jpg',
+      'assets/images/projects/vr-pedestrian-2.jpg'
+    ],
+    summary: "Designed and implemented a realistic VR simulation that enhances road safety by immersing users in a pedestrian's perspective, highlighting blind spots and reaction-time challenges.",
+    specs: [
+      ['Engine', 'Unity'],
+      ['Language', 'C#'],
+      ['Hardware', 'VR headset (room-scale)'],
+      ['Focus area', 'Road safety / human factors'],
+      ['3D Assets', 'Blender']
+    ],
+    highlights: [
+      'Modeled realistic traffic scenarios and pedestrian-vehicle interaction zones.',
+      'Built interactive VR triggers to simulate hazard timing and reaction windows.',
+      'Presented findings on perception gaps from a pedestrian viewpoint.'
+    ],
+    links: { github: '#', demo: '' }
+  },
+  'aerial-manipulator': {
+    title: 'Aerial Manipulator Project',
+    period: 'Jun 2023 - Mar 2024 · Handzylectro Labs, Hyderabad',
+    images: [
+      'assets/images/projects/aerial-manipulator-1.jpg',
+      'assets/images/projects/aerial-manipulator-2.jpg'
+    ],
+    summary: 'As a Robotics Intern, prototyped, designed, and developed an aerial manipulator system capable of manipulating objects mid-flight.',
+    specs: [
+      ['Role', 'Robotics Intern'],
+      ['Focus', 'Mechanical prototyping & design'],
+      ['Domain', 'Aerial robotics'],
+      ['Duration', '10 months']
+    ],
+    highlights: [
+      'Iterated on mechanical arm design for weight and stability trade-offs.',
+      'Prototyped manipulator linkages for mid-air grasp tasks.',
+      'Collaborated with a small robotics team on system integration.'
+    ],
+    links: { github: '#', demo: '' }
+  },
+  'exosuit': {
+    title: 'Robotic Exosuit for Lower Arm',
+    period: "2019 - 2023 · Bachelor's Thesis, Mahindra University",
+    images: [
+      'assets/images/projects/exosuit-1.jpg',
+      'assets/images/projects/exosuit-2.jpg',
+      'assets/images/projects/exosuit-3.jpg'
+    ],
+    summary: 'Conceptualized and developed a soft exosuit tailored to empower individuals with disabled arms, facilitating their daily activities with ease.',
+    specs: [
+      ['Type', 'Soft robotic exosuit'],
+      ['Target area', 'Lower arm'],
+      ['CAD tool', 'SOLIDWORKS'],
+      ['Thesis type', 'Bachelor of Technology, Mechanical Engineering']
+    ],
+    highlights: [
+      'Designed a lightweight, wearable soft-actuation structure.',
+      'Validated range-of-motion assistance for daily activity tasks.',
+      'Presented as final thesis project for B.Tech. Mechanical Engineering.'
+    ],
+    links: { github: '#', demo: '' }
+  },
+  'gear-design': {
+    title: 'Parametric Gear Design Toolkit',
+    period: 'Ongoing · Personal Project',
+    images: [
+      'assets/images/projects/gear-design-1.jpg',
+      'assets/images/projects/gear-design-2.jpg'
+    ],
+    summary: 'Parametric beveloid and conical gear design using MATLAB and Lua, generating manufacturable gear geometries from custom input parameters.',
+    specs: [
+      ['Tools', 'MATLAB, Lua'],
+      ['Gear types', 'Beveloid, conical'],
+      ['Output', 'Manufacturable CAD geometry'],
+      ['Status', 'Actively maintained']
+    ],
+    highlights: [
+      'Automated gear-tooth profile generation from parametric inputs.',
+      'Built a Lua scripting layer for CAD-software integration.',
+      'Validated geometry against manufacturability constraints.'
+    ],
+    links: { github: '#', demo: '' }
+  },
+  'ros2-rover': {
+    title: 'ROS 2 Rover & Sensor Integration',
+    period: 'Ongoing · Personal Project',
+    images: [
+      'assets/images/projects/ros2-rover-1.jpg',
+      'assets/images/projects/ros2-rover-2.jpg'
+    ],
+    summary: 'Personal ROS 2 rover project integrating sensors and micro-ROS over ESP32, used to learn ROS 2 nodes, topics, and navigation stack fundamentals.',
+    specs: [
+      ['Framework', 'ROS 2'],
+      ['Simulation', 'Gazebo'],
+      ['Microcontroller bridge', 'micro-ROS on ESP32'],
+      ['Focus', 'Navigation stack, sensor topics']
+    ],
+    highlights: [
+      'Set up micro-ROS communication between ESP32 and ROS 2 nodes.',
+      'Integrated sensor topics for basic SLAM experimentation in Gazebo.',
+      'Used as a hands-on foundation for ROS 2 architecture concepts.'
+    ],
+    links: { github: '#', demo: '' }
+  }
+};
+
+// =========================================================
+// 11. Project detail overlay open/close logic
+// =========================================================
+const projectOverlay = document.getElementById('projectDetailOverlay');
+const projectDetailBody = document.getElementById('projectDetailBody');
+const projectDetailClose = document.getElementById('projectDetailClose');
+
+function renderProjectDetail(key) {
+  const data = PROJECT_DATA[key];
+  if (!data) return;
+
+  const specsRows = data.specs.map(([label, value]) =>
+    `<tr><th>${label}</th><td>${value}</td></tr>`
+  ).join('');
+
+  const highlightItems = data.highlights.map(h => `<li>${h}</li>`).join('');
+
+  const imagesHtml = data.images.map(src =>
+    `<img src="${src}" alt="${data.title}" loading="lazy" onerror="this.style.display='none'">`
+  ).join('');
+
+  projectDetailBody.innerHTML = `
+    <p class="project-detail-period">${data.period}</p>
+    <h3 class="project-detail-title">${data.title}</h3>
+    <div class="project-gallery">${imagesHtml}</div>
+    <p class="project-detail-summary">${data.summary}</p>
+    <div class="project-detail-columns">
+      <div>
+        <h4>Key specs</h4>
+        <table class="project-specs-table">${specsRows}</table>
+      </div>
+      <div>
+        <h4>Highlights</h4>
+        <ul class="project-highlights-list">${highlightItems}</ul>
+      </div>
+    </div>
+    <div class="project-detail-links">
+      ${data.links.github ? `<a href="${data.links.github}" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub</a>` : ''}
+      ${data.links.demo ? `<a href="${data.links.demo}" target="_blank" rel="noopener" class="btn btn-primary">Live demo</a>` : ''}
+    </div>
+  `;
+
+  projectOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectDetail() {
+  projectOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.project-open-btn, .project-card').forEach(el => {
+  el.addEventListener('click', (e) => {
+    const key = el.dataset.project;
+    if (key) renderProjectDetail(key);
+  });
+});
+
+projectDetailClose.addEventListener('click', closeProjectDetail);
+projectOverlay.addEventListener('click', (e) => {
+  if (e.target === projectOverlay) closeProjectDetail();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeProjectDetail();
+});
