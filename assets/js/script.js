@@ -56,7 +56,7 @@ const roles = [
   'mechatronic systems.',
   'gears & mechanical designs.',
   'embedded system projects.',
-  'and many more cool things!'
+  'many more cool things!'
 ];
 
 let roleIndex = 0;
