@@ -54,8 +54,8 @@ const roles = [
   'robots.',
   'ROS2 simulations.',
   'mechatronic systems.',
-  'gears & mechanical designs.',
-  'embedded system projects.',
+  'mechanical designs.',
+  'embedded systems.',
   'many more cool things!'
 ];
 
@@ -314,31 +314,32 @@ const PROJECT_DATA = {
     title: 'Autonomous Robo-Dog Navigation System',
     period: 'Oct 2025 - Jan 2026 · Deggendorf Institute of Technology',
     images: [
-      'assets/images/projects/robodog-1.jpg',
-      'assets/images/projects/robodog-2.jpg',
-      'assets/images/projects/robodog-3.jpg'
+      'assets/images/projects/dog/robodog-1.jpeg',
+      'assets/images/projects/dog/robodog-2.jpg',
+      'assets/images/projects/dog/robodog-3.jpg'
     ],
     summary: 'Built an embedded autonomous navigation system for a quadruped robot (robo-dog) using Arduino/ESP32 and multiple sensors for localization and motion control.',
     specs: [
-      ['Platform', 'Quadruped robot chassis'],
-      ['Microcontroller', 'ESP32 / Arduino'],
-      ['Sensors', 'IMU, ultrasonic, encoders'],
+      ['Platform', 'Unitree Go2'],
+      ['Microcontroller', 'ESP32, ESP32-CAM'],
+      ['Sensors', 'IMU, ultrasonic, LiDAR, camera'],
       ['Role', 'Navigation & motion control'],
       ['Outcome', 'Autonomous obstacle-aware locomotion']
     ],
     highlights: [
-      'Designed the sensor fusion pipeline for localization on a resource-constrained MCU.',
-      'Implemented closed-loop motion control for stable quadruped gait tracking.',
+      'Designed the multi-sensor fusion pipeline for localization on a resource-constrained MCU.',
+      'Implemented closed-loop motion control for stable quadruped tracking.',
       'Tuned obstacle-avoidance thresholds using live sensor calibration.'
     ],
     links: { github: '#', demo: '' }
   },
   'vr-pedestrian': {
-    title: 'VR Project: "Pedestrian Perspective"',
+    title: 'VR Project: "Pedestrian Simulator"',
     period: 'Jul 2025 · Deggendorf Institute of Technology',
     images: [
-      'assets/images/projects/vr-pedestrian-1.jpg',
-      'assets/images/projects/vr-pedestrian-2.jpg'
+      'assets/images/projects/vr/vr-scene.jpg',
+      'assets/images/projects/vr/vrbone.png',
+      'assets/images/projects/vr/navmesh.png'
     ],
     summary: "Designed and implemented a realistic VR simulation that enhances road safety by immersing users in a pedestrian's perspective, highlighting blind spots and reaction-time challenges.",
     specs: [
@@ -351,7 +352,8 @@ const PROJECT_DATA = {
     highlights: [
       'Modeled realistic traffic scenarios and pedestrian-vehicle interaction zones.',
       'Built interactive VR triggers to simulate hazard timing and reaction windows.',
-      'Presented findings on perception gaps from a pedestrian viewpoint.'
+      'Presented findings on perception gaps from a pedestrian viewpoint.',
+      'Yet to submit to be published as a research paper on VR-based road safety training.'
     ],
     links: { github: '#', demo: '' }
   },
@@ -359,20 +361,21 @@ const PROJECT_DATA = {
     title: 'Aerial Manipulator Project',
     period: 'Jun 2023 - Mar 2024 · Handzylectro Labs, Hyderabad',
     images: [
-      'assets/images/projects/aerial-manipulator-1.jpg',
-      'assets/images/projects/aerial-manipulator-2.jpg'
+      'assets/images/projects/aerial-man/Aerial_Manipulator_AssemblyFront1.png',
+      'assets/images/projects/aerial-man/Aerial_Manipulator_AssemblyTop1.png',
+      'assets/images/projects/aerial-man/aerial-manipulator-thumb.png'
     ],
     summary: 'As a Robotics Intern, prototyped, designed, and developed an aerial manipulator system capable of manipulating objects mid-flight.',
     specs: [
       ['Role', 'Robotics Intern'],
-      ['Focus', 'Mechanical prototyping & design'],
+      ['Hardware', 'PX4, ESP32, custom manipulator'],
       ['Domain', 'Aerial robotics'],
       ['Duration', '10 months']
     ],
     highlights: [
-      'Iterated on mechanical arm design for weight and stability trade-offs.',
+      'Iterated on mechanical arm design of drone for weight and stability using Finite Element Analysis.',
       'Prototyped manipulator linkages for mid-air grasp tasks.',
-      'Collaborated with a small robotics team on system integration.'
+      '3D printed and assembled the manipulator for flight testing with PX4 autopilot integration.'
     ],
     links: { github: '#', demo: '' }
   },
@@ -380,15 +383,14 @@ const PROJECT_DATA = {
     title: 'Robotic Exosuit for Lower Arm',
     period: "2019 - 2023 · Bachelor's Thesis, Mahindra University",
     images: [
-      'assets/images/projects/exosuit-1.jpg',
-      'assets/images/projects/exosuit-2.jpg',
-      'assets/images/projects/exosuit-3.jpg'
+      'assets/images/projects/exosuit/exosuit-1.jpg',
+      'assets/images/projects/exosuit/exosuit-2.jpg'
     ],
     summary: 'Conceptualized and developed a soft exosuit tailored to empower individuals with disabled arms, facilitating their daily activities with ease.',
     specs: [
       ['Type', 'Soft robotic exosuit'],
       ['Target area', 'Lower arm'],
-      ['CAD tool', 'SOLIDWORKS'],
+      ['Tools', 'SOLIDWORKS, Arduino, 3D printing'],
       ['Thesis type', 'Bachelor of Technology, Mechanical Engineering']
     ],
     highlights: [
@@ -399,22 +401,22 @@ const PROJECT_DATA = {
     links: { github: '#', demo: '' }
   },
   'gear-design': {
-    title: 'Parametric Gear Design Toolkit',
-    period: 'Ongoing · Personal Project',
+    title: 'Parametric Beveloid Gear Design',
+    period: 'Feb 2026 - Jul 2026 · Deggendorf Institute of Technology',
     images: [
-      'assets/images/projects/gear-design-1.jpg',
-      'assets/images/projects/gear-design-2.jpg'
+      'assets/images/projects/gear/BeveloidGearMeshingSimulation.png',
+      'assets/images/projects/gear/gear-design-assembly.jpg'
     ],
-    summary: 'Parametric beveloid and conical gear design using MATLAB and Lua, generating manufacturable gear geometries from custom input parameters.',
+    summary: 'Parametric beveloid gear design using MATLAB and Lua, generating manufacturable gear geometries from custom input parameters.',
     specs: [
-      ['Tools', 'MATLAB, Lua'],
-      ['Gear types', 'Beveloid, conical'],
-      ['Output', 'Manufacturable CAD geometry'],
-      ['Status', 'Actively maintained']
+      ['Tools', 'MATLAB, Lua, 3D printing'],
+      ['Gear types', 'Beveloid, conical involute'],
+      ['Output', 'Parametric Gear model and printed prototype'],
+      ['Status', 'Finished project, 3D printed prototype']
     ],
     highlights: [
       'Automated gear-tooth profile generation from parametric inputs.',
-      'Built a Lua scripting layer for CAD-software integration.',
+      'Built a Lua script in IceSL for CAD-software integration.',
       'Validated geometry against manufacturability constraints.'
     ],
     links: { github: '#', demo: '' }
@@ -423,20 +425,21 @@ const PROJECT_DATA = {
     title: 'ROS 2 Rover & Sensor Integration',
     period: 'Ongoing · Personal Project',
     images: [
-      'assets/images/projects/ros2-rover-1.jpg',
-      'assets/images/projects/ros2-rover-2.jpg'
+      'assets/images/projects/wip.png',
+      'assets/images/projects/wip.png',
+      'assets/images/projects/wip.png'
     ],
-    summary: 'Personal ROS 2 rover project integrating sensors and micro-ROS over ESP32, used to learn ROS 2 nodes, topics, and navigation stack fundamentals.',
+    summary: 'Personal ROS 2 rover project integrating sensors to enable SLAM and navigation using LiDAR, IMU, and camera data',
     specs: [
       ['Framework', 'ROS 2'],
       ['Simulation', 'Gazebo'],
-      ['Microcontroller bridge', 'micro-ROS on ESP32'],
+      ['Sensors', 'LiDAR, IMU, Camera'],
       ['Focus', 'Navigation stack, sensor topics']
     ],
     highlights: [
-      'Set up micro-ROS communication between ESP32 and ROS 2 nodes.',
+      'Set up ROS 2 environment and created a custom rover model in Gazebo.',
       'Integrated sensor topics for basic SLAM experimentation in Gazebo.',
-      'Used as a hands-on foundation for ROS 2 architecture concepts.'
+      'Used as a prototype for blind navigation in areas with limited GPS coverage.'
     ],
     links: { github: '#', demo: '' }
   }
@@ -478,11 +481,12 @@ function renderProjectDetail(key) {
         <ul class="project-highlights-list">${highlightItems}</ul>
       </div>
     </div>
-    <div class="project-detail-links">
-      ${data.links.github ? `<a href="${data.links.github}" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub</a>` : ''}
-      ${data.links.demo ? `<a href="${data.links.demo}" target="_blank" rel="noopener" class="btn btn-primary">Live demo</a>` : ''}
-    </div>
   `;
+    // Optional: Add links section if you want to include GitHub/demo buttons
+    // <div class="project-detail-links">
+    //   ${data.links.github ? `<a href="${data.links.github}" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub</a>` : ''}
+    //   ${data.links.demo ? `<a href="${data.links.demo}" target="_blank" rel="noopener" class="btn btn-primary">Live demo</a>` : ''}
+    // </div>
 
   projectOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
