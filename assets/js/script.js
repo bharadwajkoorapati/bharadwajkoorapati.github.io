@@ -54,8 +54,8 @@ const roles = [
   'robots.',
   'ROS2 simulations.',
   'mechatronic systems.',
-  'gears & mechanical designs.',
-  'embedded system projects.',
+  'mechanical designs.',
+  'embedded systems.',
   'many more cool things!'
 ];
 
